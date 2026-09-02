@@ -21,8 +21,6 @@ from sqlalchemy.exc import SQLAlchemyError
 # The credentials are handled in src/db_connection.py using the .env file.
 from db_connection import get_engine
 
-# --- SECOND PART ---
-
 # ============================================================
 # Logging configuration
 # ============================================================
@@ -37,8 +35,6 @@ logging.basicConfig(
 # Create a logger for this file.
 logger = logging.getLogger(__name__)
 
-# --- THIRD PART ---
-
 # ============================================================
 # Database connection
 # ============================================================
@@ -46,9 +42,6 @@ logger = logging.getLogger(__name__)
 # Create a reusable SQLAlchemy engine.
 # This engine is used by pandas and SQLAlchemy to connect to PostgreSQL.
 engine = get_engine()
-
-
-# --- FOURTH PART ---
 
 # ============================================================
 # Project folders
@@ -71,8 +64,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # data/raw/treatments/
 # data/raw/billing/
 RAW_DATA_DIR = BASE_DIR / "data" / "raw"
-
-# --- FIFTH PART ---
 
 # ============================================================
 # Source configuration
@@ -114,8 +105,6 @@ SOURCES = {
     },
 }
 
-# --- SIXTH PART ---
-
 # ============================================================
 # Helper functions
 # ============================================================
@@ -137,7 +126,6 @@ def get_relative_path(file_path: Path) -> str:
     """
     return str(file_path.relative_to(BASE_DIR))
 
-# --- SEVENTH PART ---
 
 def get_csv_files(folder_path: Path) -> list[Path]:
     """
@@ -160,7 +148,6 @@ def get_csv_files(folder_path: Path) -> list[Path]:
     # sorted() makes the loading order predictable.
     return sorted(folder_path.glob("*.csv"))
 
-# --- EIGHTH PART ---
 
 def file_was_processed(file_path: Path) -> bool:
     """
@@ -199,7 +186,6 @@ def file_was_processed(file_path: Path) -> bool:
     # If the count is greater than 0, the file was already processed.
     return result > 0
 
-# --- NINTH PART ---
 
 def log_ingestion(
     source_name: str,
@@ -280,7 +266,6 @@ def log_ingestion(
             }
         )
 
-# --- TENTH PART ---
 
 def load_csv_to_raw_table(
     file_path: Path,
@@ -333,8 +318,6 @@ def load_csv_to_raw_table(
     # Return the number of rows inserted.
     return len(df)
 
-
-# --- ELEVENTH PART ---
 
 def process_file(
     source_name: str,
